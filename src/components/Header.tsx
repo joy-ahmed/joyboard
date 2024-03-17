@@ -55,12 +55,14 @@ const Header = () => {
           </nav>
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
+            <LoginLink postLoginRedirectURL="/dashboard">
+              <span
                 className="block bg-teal-600 py-2.5 px-5 text-sm font-medium text-white rounded-md hover:bg-teal-700 transition"
-                href="/login"
+
               >
-               <LoginLink postLoginRedirectURL="/dashboard">Login</LoginLink> 
-              </a>
+               Login
+              </span>
+              </LoginLink> 
               <a
                 className="hidden bg-gray-100 py-2.5 px-5 text-sm font-medium text-teal-600 rounded-md hover:text-teal-600/75 transition sm:block"
                 href="/register"
