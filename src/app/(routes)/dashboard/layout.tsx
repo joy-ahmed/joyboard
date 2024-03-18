@@ -5,6 +5,7 @@ import { useConvex } from "convex/react";
 import React, { useEffect } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import SidebarNav from "@/components/sidenav/SidebarNav";
 
 const DashboardLayout = ({
   children,
@@ -26,7 +27,16 @@ const DashboardLayout = ({
     }
   };
 
-  return <div>{children}</div>;
+  return (
+    <div>
+      <div className="grid grid-cols-4">
+        <div>
+          <SidebarNav />
+        </div>
+        <div className="grid-cols-3">{children}</div>
+      </div>
+    </div>
+  );
 };
 
 export default DashboardLayout;
