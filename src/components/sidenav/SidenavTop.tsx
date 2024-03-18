@@ -1,6 +1,6 @@
 import { ChevronDown, LayoutGrid, LogOut, Settings, Users } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 import {
   Popover,
@@ -13,13 +13,13 @@ import { useConvex } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Button } from "../ui/button";
 
-interface Team {
+export interface Team {
   _id: string;
   name: string;
   createdBy: string;
 }
 
-const SidenavTop = ({ user }: any) => {
+const SidenavTop = ({ user, setActiveTeamInfo }: any) => {
   const [teamList, setTeamList] = useState<Team[]>([]);
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
   const menu = [
@@ -43,11 +43,14 @@ const SidenavTop = ({ user }: any) => {
     user && getTeamList();
   }, [user]);
 
+  useEffect(() => {
+    selectedTeam && setActiveTeamInfo(selectedTeam)
+  },[selectedTeam])
+
   const getTeamList = async () => {
     const result = await convex.query(api.teams.getTeam, {
       email: user?.email || "",
     });
-    console.log(result);
     setTeamList(result);
     setSelectedTeam(result[0]);
   };
